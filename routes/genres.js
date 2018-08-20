@@ -47,6 +47,13 @@ router.get('/', async (req, res) => {
     res.send(genres);
 });
 
+router.get('/:id', async (req, res) => {
+    const genres = await Genre
+        .findById(req.params.id)
+        .sort({name: 1});
+    console.log(genres);
+    res.send(genres);
+});
 
 router.post('/', async (req, res) => {
     const {error} = validateGenre(req.body);
@@ -80,13 +87,7 @@ router.put('/:id', async (req, res) => {
 //
 //   res.send(genre);
 // });
-//
-// router.get('/:id', (req, res) => {
-//   const genre = genres.find(c => c.id === parseInt(req.params.id));
-//   if (!genre) return res.status(404).send('The genre with the given ID was not found.');
-//   res.send(genre);
-// });
-//
+
 function validateGenre(genre) {
     const schema = {
         name: Joi.string().min(3).max(25).required()
