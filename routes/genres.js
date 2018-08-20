@@ -28,22 +28,11 @@ const Genre = mongoose.model('Genre', new mongoose.Schema({
 //     const result = await genre.save();
 //     console.log(result);
 // }
-//
-// createGenre('Action');
-// createGenre('Horror');
-// createGenre('Romance');
-
-// const genres = [
-//   { id: 1, name: 'Action' },
-//   { id: 2, name: 'Horror' },
-//   { id: 3, name: 'Romance' },
-// ];
 
 router.get('/', async (req, res) => {
     const genres = await Genre
         .find()
         .sort({name: 1});
-    console.log(genres);
     res.send(genres);
 });
 
