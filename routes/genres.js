@@ -6,36 +6,45 @@ mongoose.connect('mongodb://localhost/vidly')
 const express = require('express');
 const router = express.Router();
 
-const genreSchema = new mongoose.Schema({
-    name: {type: String, required: true},
-    created: {type: Date, default: Date.now}
-});
+// const Joi = require('joi');
 
-const Genre = mongoose.model('Genre', genreSchema);
+const Genre = mongoose.model('Genre', new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    }
+}));
 
-async function createGenre(name) {
-    const genre = new Genre({
-        name: name,
-    });
-    const result = await genre.save();
-    console.log(result);
-}
-
-createGenre('Action');
+// async function createGenre(name) {
+//     const genre = new Genre({
+//         name: name,
+//     });
+//     const result = await genre.save();
+//     console.log(result);
+// }
+//
+// createGenre('Action');
 // createGenre('Horror');
 // createGenre('Romance');
-
 
 // const genres = [
 //   { id: 1, name: 'Action' },
 //   { id: 2, name: 'Horror' },
 //   { id: 3, name: 'Romance' },
 // ];
-//
-// router.get('/', (req, res) => {
-//   res.send(genres);
-// });
-//
+
+router.get('/', async (req, res) => {
+    const genres = await Genre
+        .find()
+        .sort({name: 1});
+    console.log(genres);
+    res.send(genres);
+});
+
 //
 //
 // router.post('/', (req, res) => {
