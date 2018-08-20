@@ -48,11 +48,12 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const genres = await Genre
+    const genre = await Genre
         .findById(req.params.id)
-        .sort({name: 1});
-    console.log(genres);
-    res.send(genres);
+        .sort({name: 1})
+        .catch(err => console.log('Error', err.message));
+    if (!genre) return res.status(404).send('The genre with the given ID was not found.');
+    res.send(genre);
 });
 
 router.post('/', async (req, res) => {
@@ -70,11 +71,14 @@ router.put('/:id', async (req, res) => {
     const {error} = validateGenre(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    const genre = await Genre.findByIdAndUpdate(
-        req.params.id,
-        {name: req.body.name},
-        {new: true}
-    );
+    const genre = await Genre
+        .findByIdAndUpdate(
+            req.params.id,
+            {name: req.body.name},
+            {new: true}
+        )
+        .catch(err => console.log('Error', err.message));
+    if (!genre) return res.status(404).send('The genre with the given ID was not found.');
     res.send(genre);
 });
 
