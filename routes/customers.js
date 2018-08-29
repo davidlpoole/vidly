@@ -3,16 +3,6 @@ const router = express.Router();
 
 const { Customer, validate } = require("../models/customer");
 
-// async function createCustomer(name, isGold, phone) {
-//     const customer = new Customer({
-//         name: name,
-//         isGold: isGold,
-//         phone: phone
-//     });
-//     const result = await customer.save();
-//     console.log(result);
-// }
-
 router.get("/", async (req, res) => {
   const customers = await Customer.find().sort("name");
   res.send(customers);

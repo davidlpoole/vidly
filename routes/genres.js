@@ -3,14 +3,6 @@ const router = express.Router();
 
 const { Genre, validate } = require("../models/genre");
 
-// async function createGenre(name) {
-//     const genre = new Genre({
-//         name: name,
-//     });
-//     const result = await genre.save();
-//     console.log(result);
-// }
-
 router.get("/", async (req, res) => {
   const genres = await Genre.find().sort({ name: 1 });
   res.send(genres);
