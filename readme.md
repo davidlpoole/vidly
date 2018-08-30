@@ -8,7 +8,7 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
   - [x] Genres
   - [x] Customers
   - [x] Restructure Genres & Customers models
-  - [ ] Movies
+  - [x] Movies
   - [ ] Rentals
 - [ ] Authentication/Authorization
 - [ ] Testing
