@@ -1,65 +1,95 @@
-const express = require("express");
+const mongoose = require('mongoose');
+const express = require('express');
 const router = express.Router();
 
-const { Movie, validate } = require("../models/movie");
+const { Movie, validate } = require('../models/movie');
+const { Genre } = require('../models/genre');
 
-router.get("/", async (req, res) => {
-  const movies = await Movie.find()
-    .sort("name")
-    .select("name")
-    .populate("genre", "name");
+// @route   GET /api/movies/
+// @desc    Lists all movies
+// @access  Public
+router.get('/', async (req, res) => {
+  const movies = await Movie.find().sort('name');
   res.send(movies);
 });
 
-router.get("/:id", async (req, res) => {
+// @route   GET /api/movies/:id
+// @desc    Find a movie by id
+// @access  Public
+router.get('/:id', async (req, res) => {
   const movie = await Movie.findById(req.params.id)
     .sort({ name: 1 })
-    .select("name")
-    .populate("genre", "name")
-    .catch(err => console.log("Error", err.message));
+    .catch(err => console.log('Error', err.message));
   if (!movie)
-    return res.status(404).send("The movie with the given ID was not found.");
+    return res.status(404).send('The movie with the given ID was not found.');
   res.send(movie);
 });
 
-router.post("/", async (req, res) => {
+// @route   POST /api/movies/
+// @desc    Add a new movie
+// @access  Public
+// @params  title, genreId, numberInStock, dailyRentalRate
+router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
+  const genre = await Genre.findById(req.body.genreId);
+  if (!genre) return res.status(400).send('Invalid genre.');
+
   let movie = new Movie({
-    name: req.body.name,
-    genre: req.body.genre
+    title: req.body.title,
+    genre: {
+      _id: genre._id,
+      name: genre.name
+    },
+    numberInStock: req.body.numberInStock,
+    dailyRentalRate: req.body.dailyRentalRate
   });
   movie = await movie.save();
 
   res.send(movie);
 });
 
-router.put("/:id", async (req, res) => {
+// @route   PUT /api/movies/:id
+// @desc    Update a movie by id
+// @access  Public
+// @params  (movie)id, genreId, numberInStock, dailyRentalRate
+router.put('/:id', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const movie = await movie.findByIdAndUpdate(
+  const genre = await Genre.findById(req.body.genreId);
+  if (!genre) return (res.status = (400).send('Invalid genre'));
+
+  const movie = await Movie.findByIdAndUpdate(
     req.params.id,
     {
-      name: req.body.name,
-      genre: req.body.genre
+      title: req.body.title,
+      genre: {
+        _id: genre._id,
+        name: genre.name
+      },
+      numberInStock: req.body.numberInStock,
+      dailyRentalRate: req.body.dailyRentalRate
     },
     { new: true }
   );
 
   if (!movie)
-    return res.status(404).send("The movie with the given ID was not found.");
+    return res.status(404).send('The movie with the given ID was not found.');
 
   res.send(movie);
 });
 
-router.delete("/:id", async (req, res) => {
-  const movie = await movie
-    .findByIdAndRemove(req.params.id)
-    .catch(err => console.log("Error", err.message));
+// @route   DELETE /api/movies/:id
+// @desc    Delete a movie by id
+// @access  Public
+router.delete('/:id', async (req, res) => {
+  const movie = await Movie.findByIdAndRemove(req.params.id).catch(err =>
+    console.log('Error', err.message)
+  );
   if (!movie)
-    return res.status(404).send("The movie with the given ID was not found.");
+    return res.status(404).send('The movie with the given ID was not found.');
   res.send(movie);
 });
 
