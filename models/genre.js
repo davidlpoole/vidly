@@ -6,13 +6,10 @@ const genreSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 3,
-    maxlength: 50
-  },
-  created: {
-    type: Date,
-    default: Date.now
+    maxlength: 50,
+    unique: true
   }
-}); 
+});
 
 const Genre = mongoose.model('Genre', genreSchema);
 

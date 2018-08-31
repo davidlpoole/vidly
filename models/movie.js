@@ -27,10 +27,6 @@ const Movie = mongoose.model(
       required: true,
       min: 0,
       max: 255
-    },
-    created: {
-      type: Date,
-      default: Date.now
     }
   })
 );
@@ -41,7 +37,7 @@ function validateMovie(movie) {
       .min(3)
       .max(255)
       .required(),
-    genreId: Joi.string().required(),
+    genreId: Joi.objectId().required(),
     numberInStock: Joi.number()
       .min(0)
       .max(255)
