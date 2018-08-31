@@ -18,3 +18,4 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
 
 - [Joi (validation) API reference](https://github.com/hapijs/joi/blob/v13.6.0/API.md)
 - [Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
+- [Git cheatsheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
