@@ -4,7 +4,7 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
 
 ## To do
 
-- [ ] Build APIs:
+- [ ] Build models and APIs:
   - [x] Genres
   - [x] Customers
   - [x] Restructure Genres & Customers models
