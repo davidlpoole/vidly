@@ -19,10 +19,6 @@ const Customer = mongoose.model(
       required: true,
       minlength: 5,
       maxlength: 25
-    },
-    created: {
-      type: Date,
-      default: Date.now
     }
   })
 );
