@@ -21,10 +21,14 @@ router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const genre = new Genre({
+  let genre = await Genre.findOne({ name: req.body.name });
+  if (genre) return res.status(400).send('Genre already exists.');
+
+  genre = new Genre({
     name: req.body.name
   });
   await genre.save();
+
   res.send(genre);
 });
 
