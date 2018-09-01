@@ -24,7 +24,13 @@ router.post('/', async (req, res) => {
   const genre = new Genre({
     name: req.body.name
   });
-  await genre.save();
+  await genre.save().catch(err => {
+    console.log('Error', err.message);
+    return res
+      .status(400)
+      .send('Could not create genre. Error: ' + err.message);
+  });
+
   res.send(genre);
 });
 
