@@ -21,15 +21,22 @@ router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const genre = new Genre({
+  let genre = await Genre.findOne({ name: req.body.name });
+  if (genre) return res.status(400).send('Genre already exists.');
+
+  genre = new Genre({
     name: req.body.name
   });
+<<<<<<< HEAD
   await genre.save().catch(err => {
     console.log('Error', err.message);
     return res
       .status(400)
       .send('Could not create genre. Error: ' + err.message);
   });
+=======
+  await genre.save();
+>>>>>>> bd9c345... make genre unique
 
   res.send(genre);
 });
