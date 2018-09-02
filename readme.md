@@ -19,11 +19,15 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
 
 - [Joi (validation) API reference](https://github.com/hapijs/joi/blob/v13.6.0/API.md)
 - [Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
+- [joi-password-complexity](https://www.npmjs.com/package/joi-password-complexity)
+
+## Git
+
 - [Git cheatsheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
+- [Git Style Guide](https://github.com/agis/git-style-guide)
+- [Auto-squashing Git Commits](https://robots.thoughtbot.com/autosquashing-git-commits)
 
-## Git commands to remember
-
-### Stash
+#### Git Stash
 
 - git stash save [--include-untracked]
 - git stash pop|apply [--keep-index][<stash>]
