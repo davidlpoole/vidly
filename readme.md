@@ -2,14 +2,6 @@
 
 Learning Node.js by creating a video store app, by following the udemy tutorial: [Node.js: The Complete Guide to Build RESTful APIs (2018)](https://www.udemy.com/nodejs-master-class/)
 
-## Runtime requirements
-
-Set the environment variable 'vidly_jwtPrivateKey'
-
-```
-export vidly_jwtPrivateKey=ExamplePrivateKey
-```
-
 ## To do
 
 - [ ] Build models and APIs:
@@ -29,10 +21,12 @@ export vidly_jwtPrivateKey=ExamplePrivateKey
 - [Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
 - [joi-password-complexity](https://www.npmjs.com/package/joi-password-complexity)
 - [vscode keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+- [http status codes](https://github.com/waldemarnt/http-status-codes)
 
 ## Git
 
-- [Git cheatsheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
+- ['Pro Git' book (web version)](https://git-scm.com/book/en/v2)
+- [Github cheatsheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
 - [Git Style Guide](https://github.com/agis/git-style-guide)
 - [Auto-squashing Git Commits](https://robots.thoughtbot.com/autosquashing-git-commits)
 
