@@ -6,12 +6,14 @@ const mongoose = require('mongoose');
 const Fawn = require('fawn');
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 
 Fawn.init(mongoose);
 
 // @route   GET /api/rentals/
 // @desc    Lists all rentals
 // @access  Public
+// @params  none
 router.get('/', async (req, res) => {
   const rentals = await Rental.find().sort('-dateOut');
   res.send(rentals);
@@ -21,7 +23,7 @@ router.get('/', async (req, res) => {
 // @desc    Add a new rental
 // @access  Public
 // @params  customerId, movieId
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -48,15 +50,9 @@ router.post('/', async (req, res) => {
   });
 
   try {
-    new Fawn.Task()
+    new Fawn.Task() //db transaction
       .save('rentals', rental)
-      .update(
-        'movies',
-        { _id: movie._id },
-        {
-          $inc: { numberInStock: -1 }
-        }
-      )
+      .update('movies', { _id: movie._id }, { $inc: { numberInStock: -1 } })
       .run();
   } catch (ex) {
     res.status(500).send('Transaction failed.');
@@ -68,6 +64,7 @@ router.post('/', async (req, res) => {
 // @route   GET /api/rentals/id
 // @desc    Return a specific rental by id
 // @access  Public
+// @params  none
 router.get('/:id', async (req, res) => {
   const rental = await Rental.findById(req.params.id);
 

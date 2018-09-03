@@ -1,13 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 
 const { Genre, validate } = require('../models/genre');
 
+// @route   GET /api/genres/
+// @desc    List all genres
+// @access  Public
+// @params  none
 router.get('/', async (req, res) => {
   const genres = await Genre.find().sort({ name: 1 });
   res.send(genres);
 });
 
+// @route   GET /api/genres/:id
+// @desc    Find a genre by id
+// @access  Public
+// @params  none
 router.get('/:id', async (req, res) => {
   const genre = await Genre.findById(req.params.id)
     .sort({ name: 1 })
@@ -17,7 +26,11 @@ router.get('/:id', async (req, res) => {
   res.send(genre);
 });
 
-router.post('/', async (req, res) => {
+// @route   POST /api/genres/:id
+// @desc    Create a new genre
+// @access  Private
+// @params  (genre)name
+router.post('/', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -32,7 +45,11 @@ router.post('/', async (req, res) => {
   res.send(genre);
 });
 
-router.put('/:id', async (req, res) => {
+// @route   PUT /api/genres/:id
+// @desc    Update a genre
+// @access  Private
+// @params  (genre)name
+router.put('/:id', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -46,7 +63,11 @@ router.put('/:id', async (req, res) => {
   res.send(genre);
 });
 
-router.delete('/:id', async (req, res) => {
+// @route   DELETE /api/genres/:id
+// @desc    Delete a genre
+// @access  Private
+// @params  none
+router.delete('/:id', auth, async (req, res) => {
   const genre = await Genre.findByIdAndRemove(req.params.id).catch(err =>
     console.log('Error', err.message)
   );

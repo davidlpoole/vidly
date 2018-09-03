@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 
 const { Movie, validate } = require('../models/movie');
 const { Genre } = require('../models/genre');
@@ -7,6 +8,7 @@ const { Genre } = require('../models/genre');
 // @route   GET /api/movies/
 // @desc    Lists all movies
 // @access  Public
+// @params  none
 router.get('/', async (req, res) => {
   const movies = await Movie.find().sort('name');
   res.send(movies);
@@ -15,6 +17,7 @@ router.get('/', async (req, res) => {
 // @route   GET /api/movies/:id
 // @desc    Find a movie by id
 // @access  Public
+// @params  none
 router.get('/:id', async (req, res) => {
   const movie = await Movie.findById(req.params.id)
     .sort({ name: 1 })
@@ -26,9 +29,9 @@ router.get('/:id', async (req, res) => {
 
 // @route   POST /api/movies/
 // @desc    Add a new movie
-// @access  Public
+// @access  Private
 // @params  title, genreId, numberInStock, dailyRentalRate
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -51,9 +54,9 @@ router.post('/', async (req, res) => {
 
 // @route   PUT /api/movies/:id
 // @desc    Update a movie by id
-// @access  Public
+// @access  Private
 // @params  (movie)id, genreId, numberInStock, dailyRentalRate
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -82,8 +85,9 @@ router.put('/:id', async (req, res) => {
 
 // @route   DELETE /api/movies/:id
 // @desc    Delete a movie by id
-// @access  Public
-router.delete('/:id', async (req, res) => {
+// @access  Private
+// @params  none
+router.delete('/:id', auth, async (req, res) => {
   const movie = await Movie.findByIdAndRemove(req.params.id).catch(err =>
     console.log('Error', err.message)
   );
