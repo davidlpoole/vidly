@@ -12,7 +12,9 @@ const users = require('./routes/users');
 const auth = require('./routes/auth');
 
 if (!config.get('jwtPrivateKey')) {
-  console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+  console.error(
+    'FATAL ERROR: jwtPrivateKey is not defined. Set it with "export variablename=value"'
+  );
   process.exit(1);
 }
 
