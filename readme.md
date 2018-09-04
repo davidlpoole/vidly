@@ -11,7 +11,7 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
   - [x] Movies
   - [x] Rentals
   - [ ] Returns
-- [ ] Authentication/Authorization
+- [x] Authentication/Authorization
 - [ ] Testing
 - [ ] Deployment
 
@@ -19,11 +19,19 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
 
 - [Joi (validation) API reference](https://github.com/hapijs/joi/blob/v13.6.0/API.md)
 - [Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
-- [Git cheatsheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
+- [joi-password-complexity](https://www.npmjs.com/package/joi-password-complexity)
+- [vscode keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+- [http status codes](https://github.com/waldemarnt/http-status-codes)
+- [jwt web tokens](https://jwt.io)
 
-## Git commands to remember
+## Git
 
-### Stash
+- ['Pro Git' book (web version)](https://git-scm.com/book/en/v2)
+- [Github cheatsheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
+- [Git Style Guide](https://github.com/agis/git-style-guide)
+- [Auto-squashing Git Commits](https://robots.thoughtbot.com/autosquashing-git-commits)
+
+#### Git Stash
 
 - git stash save [--include-untracked]
 - git stash pop|apply [--keep-index][<stash>]

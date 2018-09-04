@@ -1,13 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 const { Customer, validate } = require('../models/customer');
+
+// @route   GET /api/customers/
+// @desc    List all customers
+// @access  Public
+// @params  none
 
 router.get('/', async (req, res) => {
   const customers = await Customer.find().sort('name');
   res.send(customers);
 });
 
+// @route   GET /api/customers/:id
+// @desc    Find a customer by id
+// @access  Public
+// @params  none
 router.get('/:id', async (req, res) => {
   const customer = await Customer.findById(req.params.id)
     .sort({ name: 1 })
@@ -19,7 +30,11 @@ router.get('/:id', async (req, res) => {
   res.send(customer);
 });
 
-router.post('/', async (req, res) => {
+// @route   POST /api/customers/:id
+// @desc    Create a new customer
+// @access  Private
+// @params  (customer)name, isGold, phone(number)
+router.post('/', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -33,7 +48,11 @@ router.post('/', async (req, res) => {
   res.send(customer);
 });
 
-router.put('/:id', async (req, res) => {
+// @route   PUT /api/customers/:id
+// @desc    Update a customer
+// @access  Private
+// @params  (customer)name, isGold, phone(number)
+router.put('/:id', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -55,7 +74,11 @@ router.put('/:id', async (req, res) => {
   res.send(customer);
 });
 
-router.delete('/:id', async (req, res) => {
+// @route   DELETE /api/customers/:id
+// @desc    Delete a customer
+// @access  Private
+// @params  none
+router.delete('/:id', [auth, admin], async (req, res) => {
   const customer = await Customer.findByIdAndRemove(req.params.id).catch(err =>
     console.log('Error', err.message)
   );
