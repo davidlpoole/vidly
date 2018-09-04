@@ -87,7 +87,7 @@ router.put('/:id', auth, async (req, res) => {
 // @desc    Delete a movie by id
 // @access  Private
 // @params  none
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
   const movie = await Movie.findByIdAndRemove(req.params.id).catch(err =>
     console.log('Error', err.message)
   );

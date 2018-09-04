@@ -77,7 +77,7 @@ router.put('/:id', auth, async (req, res) => {
 // @desc    Delete a customer
 // @access  Private
 // @params  none
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
   const customer = await Customer.findByIdAndRemove(req.params.id).catch(err =>
     console.log('Error', err.message)
   );

@@ -22,6 +22,7 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
 - [joi-password-complexity](https://www.npmjs.com/package/joi-password-complexity)
 - [vscode keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
 - [http status codes](https://github.com/waldemarnt/http-status-codes)
+- [jwt web tokens](https://jwt.io)
 
 ## Git
 
