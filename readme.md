@@ -11,7 +11,7 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
   - [x] Movies
   - [x] Rentals
   - [ ] Returns
-- [ ] Authentication/Authorization
+- [x] Authentication/Authorization
 - [ ] Testing
 - [ ] Deployment
 
