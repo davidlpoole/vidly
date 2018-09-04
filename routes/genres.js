@@ -41,18 +41,12 @@ router.post('/', auth, async (req, res) => {
   genre = new Genre({
     name: req.body.name
   });
-<<<<<<< HEAD
   await genre.save().catch(err => {
     console.log('Error', err.message);
     return res
       .status(400)
       .send('Could not create genre. Error: ' + err.message);
   });
-=======
-  await genre.save();
->>>>>>> bd9c345... make genre unique
-
-  res.send(genre);
 });
 
 // @route   PUT /api/genres/:id
