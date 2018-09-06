@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
-
 const { Genre, validate } = require('../models/genre');
 
 // @route   GET /api/genres/
@@ -11,6 +10,7 @@ const { Genre, validate } = require('../models/genre');
 // @params  none
 router.get('/', async (req, res) => {
   const genres = await Genre.find().sort({ name: 1 });
+  throw new Error('Pretending something went wrong.');
   res.send(genres);
 });
 
