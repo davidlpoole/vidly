@@ -10,6 +10,7 @@ const { Genre, validate } = require('../models/genre');
 // @params  none
 router.get('/', async (req, res) => {
   const genres = await Genre.find().sort({ name: 1 });
+  throw new Error('Pretending something went wrong.');
   res.send(genres);
 });
 
