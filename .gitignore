@@ -1,4 +1,4 @@
-# Node packages, run npm i
+# Node packages
 node_modules
 
 # Vagrant files
@@ -6,3 +6,6 @@ node_modules
 
 # OS generated files and folders
 .DS_Store
+
+# log files
+*.log
