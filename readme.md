@@ -13,7 +13,12 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
   - [ ] Returns
 - [x] Authentication/Authorization
 - [ ] Handling and logging errors
+  - [x] set up winston
+  - [ ] add logging
 - [ ] Testing
+  - [x] Unit testing
+  - [ ] Integration testing
+  - [ ] End to end testing
 - [ ] Deployment
 
 ## npm package references
@@ -27,6 +32,7 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
 - [config](https://www.npmjs.com/package/config)
 - [lodash](https://www.npmjs.com/package/lodash)
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [jest - testing](https://jestjs.io)
 
 ## Useful links:
 
