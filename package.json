@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "dev": "nodemon index"
+    "dev": "NODE_ENV=development nodemon index",
+    "test": "NODE_ENV=test nodemon index",
+    "jest": "jest --watchAll",
+    "jestv": "jest --watchAll --verbose"
   },
   "keywords": [],
   "author": "David Poole",
@@ -26,7 +28,8 @@
   "devDependencies": {
     "@types/express": "^4.16.0",
     "@types/mongoose": "^5.2.6",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "supertest": "^3.3.0"
   },
   "repository": {
     "type": "git",
