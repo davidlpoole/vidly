@@ -16,8 +16,12 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
   - [x] set up winston
   - [ ] add logging
 - [ ] Testing
-  - [x] Unit testing
+  - [ ] Unit testing (genres)
+    - [x] user model
+    - [x] auth middleware
   - [ ] Integration testing
+    - [x] auth route
+    - [x] genres route
   - [ ] End to end testing
 - [ ] Deployment
 
