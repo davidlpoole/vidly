@@ -1,5 +1,8 @@
 # Node packages
-node_modules
+/node_modules/
+
+# testing
+/coverage/
 
 # Vagrant files
 .vagrant
@@ -8,4 +11,4 @@ node_modules
 .DS_Store
 
 # log files
-*.log
+/*.log

@@ -1,3 +1,4 @@
+const validateObjectId = require('../middleware/validateObjectId');
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
 // @desc    Find a genre by id
 // @access  Public
 // @params  none
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateObjectId, async (req, res) => {
   const genre = await Genre.findById(req.params.id)
     .sort({ name: 1 })
     .catch(err => console.log('Error', err.message));
@@ -46,13 +47,14 @@ router.post('/', auth, async (req, res) => {
       .status(400)
       .send('Could not create genre. Error: ' + err.message);
   });
+  res.send(genre);
 });
 
 // @route   PUT /api/genres/:id
 // @desc    Update a genre
 // @access  Private
 // @params  (genre)name
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', auth, validateObjectId, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -68,9 +70,9 @@ router.put('/:id', auth, async (req, res) => {
 
 // @route   DELETE /api/genres/:id
 // @desc    Delete a genre
-// @access  Private
+// @access  Private & admin only
 // @params  none
-router.delete('/:id', [auth, admin], async (req, res) => {
+router.delete('/:id', [auth, admin], validateObjectId, async (req, res) => {
   const genre = await Genre.findByIdAndRemove(req.params.id).catch(err =>
     console.log('Error', err.message)
   );

@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon index",
     "test": "NODE_ENV=test nodemon index",
-    "jest": "jest --watchAll",
-    "jestv": "jest --watchAll --verbose"
+    "jest": "jest --watchAll --runInBand",
+    "jestv": "jest --watchAll --verbose --runInBand",
+    "jestc": "jest --watchAll --verbose  --runInBand --coverage",
+    "clear_jest": "jest --clearCache"
   },
   "keywords": [],
   "author": "David Poole",
