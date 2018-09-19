@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon index",
     "test": "NODE_ENV=test nodemon index",
-    "jest": "jest --watchAll --runInBand",
-    "jestv": "jest --watchAll --verbose --runInBand",
-    "jestc": "jest --watchAll --verbose  --runInBand --coverage",
-    "clear_jest": "jest --clearCache"
+    "jest": "NODE_ENV=test jest --watchAll",
+    "jestv": "NODE_ENV=test jest --watchAll --verbose --runInBand",
+    "jestc": "NODE_ENV=test jest --watchAll --verbose --coverage",
+    "clear_jest": "NODE_ENV=test jest --clearCache"
   },
   "keywords": [],
   "author": "David Poole",
@@ -23,6 +23,7 @@
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "mongoose": "^5.2.9",
     "winston": "^2.4.4",
     "winston-mongodb": "^3.0.2"
