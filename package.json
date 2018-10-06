@@ -5,31 +5,33 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon index",
     "test": "NODE_ENV=test nodemon index",
-    "jest": "jest --watchAll --runInBand",
-    "jestv": "jest --watchAll --verbose --runInBand",
-    "jestc": "jest --watchAll --verbose  --runInBand --coverage",
-    "clear_jest": "jest --clearCache"
+    "jest": "NODE_ENV=test jest --watchAll",
+    "jestv": "NODE_ENV=test jest --watchAll --verbose --runInBand",
+    "jestc": "NODE_ENV=test jest --watchAll --verbose --runInBand --coverage",
+    "clear_jest": "NODE_ENV=test jest --clearCache",
+    "delete_logs": "rm -rf *.log"
   },
   "keywords": [],
   "author": "David Poole",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^3.0.0",
+    "bcrypt": "^3.0.1",
     "config": "^2.0.1",
     "express": "^4.16.2",
     "express-async-errors": "^3.0.0",
     "fawn": "^2.1.5",
-    "joi": "^13.1.0",
+    "joi": "^13.7.0",
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.3.0",
-    "lodash": "^4.17.10",
-    "mongoose": "^5.2.9",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.1",
     "winston": "^2.4.4",
     "winston-mongodb": "^3.0.2"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",
-    "@types/mongoose": "^5.2.6",
+    "@types/mongoose": "^5.2.18",
     "jest": "^23.6.0",
     "supertest": "^3.3.0"
   },

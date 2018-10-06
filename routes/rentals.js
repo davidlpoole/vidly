@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 
 // @route   POST /api/rentals/
 // @desc    Add a new rental
-// @access  Public
+// @access  Private
 // @params  customerId, movieId
 router.post('/', auth, async (req, res) => {
   const { error } = validate(req.body);

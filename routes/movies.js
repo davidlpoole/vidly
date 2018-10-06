@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
+
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
+const validate = require('../middleware/validate');
 
-const { Movie, validate } = require('../models/movie');
+const { Movie } = require('../models/movie');
 const { Genre } = require('../models/genre');
+
+const Joi = require('joi');
 
 // @route   GET /api/movies/
 // @desc    Lists all movies
@@ -32,12 +36,10 @@ router.get('/:id', async (req, res) => {
 // @desc    Add a new movie
 // @access  Private
 // @params  title, genreId, numberInStock, dailyRentalRate
-router.post('/', auth, async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+router.post('/', [auth, validate(validateMovie)], async (req, res) => {
 
   const genre = await Genre.findById(req.body.genreId);
-  if (!genre) return res.status(400).send('Invalid genre.');
+  if (!genre) return res.status(404).send('Invalid genre.');
 
   const movie = new Movie({
     title: req.body.title,
@@ -51,18 +53,18 @@ router.post('/', auth, async (req, res) => {
   await movie.save();
 
   res.send(movie);
+  // res.status(200).send();
+
 });
 
 // @route   PUT /api/movies/:id
 // @desc    Update a movie by id
 // @access  Private
 // @params  (movie)id, genreId, numberInStock, dailyRentalRate
-router.put('/:id', auth, async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+router.put('/:id', [auth, validate(validateMovie)], async (req, res) => {
 
   const genre = await Genre.findById(req.body.genreId);
-  if (!genre) return (res.status = (400).send('Invalid genre'));
+  if (!genre) return (res.status(404).send('Invalid genre'));
 
   const movie = await Movie.findByIdAndUpdate(
     req.params.id,
@@ -96,5 +98,24 @@ router.delete('/:id', [auth, admin], async (req, res) => {
     return res.status(404).send('The movie with the given ID was not found.');
   res.send(movie);
 });
+
+function validateMovie(req) {
+  const schema = {
+    title: Joi.string()
+      .min(3)
+      .max(255)
+      .required(),
+    genreId: Joi.objectId().required(),
+    numberInStock: Joi.number()
+      .min(0)
+      .max(255)
+      .required(),
+    dailyRentalRate: Joi.number()
+      .min(0)
+      .max(255)
+      .required()
+  };
+  return Joi.validate(req, schema);
+}
 
 module.exports = router;
