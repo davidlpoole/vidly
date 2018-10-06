@@ -6,10 +6,14 @@ const mongoose = require('mongoose');
 let server;
 
 describe('/api/genres', () => {
-  beforeEach(() => { server = require('../../index'); })
-  afterEach(async () => {
-    await Genre.remove({});
+  beforeAll(async () => {
+    server = await require('../../index');
+  })
+  afterAll(async () => {
     await server.close();
+  });
+  afterEach(async () => {
+    await Genre.deleteMany({});
   });
 
   describe('GET /', () => {
@@ -53,9 +57,6 @@ describe('/api/genres', () => {
 
   describe('POST /', () => {
 
-    // Define the happy path, and then in each test, we change 
-    // one parameter that clearly aligns with the name of the 
-    // test. 
     let token;
     let name;
 
@@ -115,10 +116,6 @@ describe('/api/genres', () => {
       id = genre._id;
       token = new User().generateAuthToken();
       newName = 'updatedName';
-    });
-
-    afterEach(async () => {
-      await Genre.remove({});
     });
 
     const exec = async () => {
@@ -181,10 +178,6 @@ describe('/api/genres', () => {
       await genre.save();
       id = genre._id;
       token = new User({ isAdmin: true }).generateAuthToken();
-    });
-
-    afterEach(async () => {
-      await Genre.remove({});
     });
 
     const exec = async () => {

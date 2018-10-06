@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 const request = require('supertest');
 const moment = require('moment');
 
-
 describe('/api/returns', () => {
     let server
     let customerId;
@@ -16,9 +15,11 @@ describe('/api/returns', () => {
     let token;
     let movie;
 
-    beforeEach(async () => {
-        server = require('../../index');
+    beforeAll(async () => {
+        server = await require('../../index');
+    });
 
+    beforeEach(async () => {
         token = new User().generateAuthToken();
         customerId = mongoose.Types.ObjectId();
         movieId = mongoose.Types.ObjectId();
@@ -30,7 +31,7 @@ describe('/api/returns', () => {
             numberInStock: '10',
             dailyRentalRate: 2
         });
-        await movie.save()
+        await movie.save();
 
         rental = new Rental({
             customer: {
@@ -44,9 +45,12 @@ describe('/api/returns', () => {
     });
 
     afterEach(async () => {
-        await Rental.remove({});
-        await Movie.remove({});
-        await server.close();
+        await Rental.deleteMany({});
+        await Movie.deleteMany({});
+    });
+
+    afterAll(async () => {
+        await server.close()
     });
 
     const exec = () => {
@@ -78,7 +82,7 @@ describe('/api/returns', () => {
     })
 
     it('return 404 if rental not found', async () => {
-        await Rental.remove({});
+        await Rental.deleteMany({});
         const res = await exec();
         expect(res.status).toBe(404);
     })

@@ -10,7 +10,7 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
   - [x] Restructure Genres & Customers models
   - [x] Movies
   - [x] Rentals
-  - [ ] Returns
+  - [x] Returns
 - [x] Authentication/Authorization
 - [ ] Handling and logging errors
   - [x] set up winston
@@ -22,6 +22,7 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
   - [ ] Integration testing
     - [x] auth route
     - [x] genres route
+    - [x] returns route
   - [ ] End to end testing
 - [ ] Deployment
 
@@ -44,6 +45,11 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
 - [vscode keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
 - [http status codes](https://github.com/waldemarnt/http-status-codes)
 - [jwt web tokens](https://jwt.io)
+
+## coding style guides
+- [https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits](AngularJS - Git Commit Guidelines)
+- [https://docs.angularjs.org/guide](AngularJS Developer Guide)
+- [https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md](Contributing to AngularJS)
 
 ## Git
 
