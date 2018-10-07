@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "dev": "NODE_ENV=development nodemon index",
     "test": "NODE_ENV=test nodemon index",
     "jest": "NODE_ENV=test jest --watchAll",
@@ -11,15 +12,20 @@
     "clear_jest": "NODE_ENV=test jest --clearCache",
     "delete_logs": "rm -rf *.log"
   },
+  "engines": {
+    "node": "8.11.4"
+  },
   "keywords": [],
   "author": "David Poole",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^3.0.1",
+    "compression": "^1.7.3",
     "config": "^2.0.1",
     "express": "^4.16.2",
     "express-async-errors": "^3.0.0",
     "fawn": "^2.1.5",
+    "helmet": "^3.13.0",
     "joi": "^13.7.0",
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.3.0",
