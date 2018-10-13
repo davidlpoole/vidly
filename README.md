@@ -47,9 +47,9 @@ Learning Node.js by creating a video store app, by following the udemy tutorial:
 - [jwt web tokens](https://jwt.io)
 
 ## coding style guides
-- [https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits] (AngularJS - Git Commit Guidelines)
-- [https://docs.angularjs.org/guide] (AngularJS Developer Guide)
-- [https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md] (Contributing to AngularJS)
+- [AngularJS - Git Commit Guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
+- [AngularJS Developer Guide](https://docs.angularjs.org/guide)
+- [Contributing to AngularJS](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md)
 
 ## Git
 
